@@ -10,11 +10,19 @@ function playButton(e) {
     // Fade the menu, bring in the new menu. 
     e.preventDefault();
 
-    $('.title-menu').fadeOut();
-
-    
-
-
     // Make the button unusable
     $('.play-button').off('click', playButton);
+
+    $('.title-menu').fadeOut();
+
+    // Fade in game menu
+    $('.💪').css('opacity', 0);
+    $('.💪').css('display', 'flex');
+    $('.💪').animate({opacity: 1}, 1000);
+
+    play();
+}
+
+function play() {
+    
 }

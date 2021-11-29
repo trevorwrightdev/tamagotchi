@@ -19,14 +19,10 @@ html {
     background-color:chartreuse;
 }
 
-#👻 {
-    display: none;
-}
-
 .💪 {
     height: 80vh;
     width: 100%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
