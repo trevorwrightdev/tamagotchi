@@ -24,5 +24,12 @@ function playButton(e) {
 }
 
 function play() {
+    // if we want to add random tamagotchi functionality, we just need to have no image initially
+    // and then assign a random one right here
+
     
+
+
+
+
 }
