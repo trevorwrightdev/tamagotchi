@@ -1,12 +1,12 @@
 
 // On start
-$('.title-menu').animate({bottom: 0}, {duration: 800, queue: false, complete: function() {
+$('.title-menu').animate({bottom: 0}, {duration: 800, queue: false, complete: () => {
 
     $('.play-button').on('click', playButton);
 
 }});
 
-function playButton(e) {
+let playButton = (e) => {
     // Fade the menu, bring in the new menu. 
     e.preventDefault();
 
@@ -23,13 +23,12 @@ function playButton(e) {
     play();
 }
 
-function play() {
+let play = () => {
     // if we want to add random tamagotchi functionality, we just need to have no image initially
     // and then assign a random one right here
 
     // decrease the values over time. I wonder if this can be done asyncronously. probably.
     
-
 
 
 
