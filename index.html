@@ -3,21 +3,52 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>tamagotchi</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- * CSS * -->
         <link rel="stylesheet" href="css/styles.css">
 
         <!-- * Scripts * -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+
         <script src="scripts/app.js" async defer></script>
     </head>
     <body>
-        <section class="💪">
-            <div class="📺">
-                <img src="assets/tamagotchi1.gif" class="tamagotchi">
+
+        <section class="title-menu">
+            tamagotchi
+            <button class="play-button">play</button>
+
+        </section>
+        <section class="💪" id="👻">
+            <div class="game">
+                <div class="📺">
+                    <img src="assets/tamagotchi1.gif" class="tamagotchi">
+                </div>
+                <div class="stat-bar">
+                    hunger
+                    <div class="bar">
+                        <div class="bar-background">
+                            <div class="bar-filler"></div>
+                        </div>
+                    </div>
+                    tiredness
+                    <div class="bar">
+                        <div class="bar-background">
+                            <div class="bar-filler"></div>
+                        </div>
+                    </div>
+                    boredom
+                    <div class="bar">
+                        <div class="bar-background">
+                            <div class="bar-filler"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
         </section>
     </body>
 </html>
