@@ -112,9 +112,11 @@ html {
     border-radius: 25vh;
     margin: 20px;
     background-color: green;
+    text-align: center;
+    font-size: 1.3rem;
 }
 
-#center.game-button {
+.game-button:nth-child(2) {
     position: relative;
     top: 3vh;
 }
