@@ -12,8 +12,9 @@ const boredomLevel = boredom;
 let styles = getComputedStyle(document.documentElement);
 
 // Making menu variables
-const eat = 'assets/eatmenu.png';
-const sleep = 'assets/sleepmenu.png';
+const eatMenu = 'assets/eatmenu.png';
+const sleepMenu = 'assets/sleepmenu.png';
+const playMenu = 'assets/playmenu.png';
 
 let startMainMenu = () => {
     $('.title-menu').animate({bottom: 0}, {duration: 800, queue: false, complete: () => {
@@ -45,7 +46,7 @@ let playButton = (e) => {
 let play = () => {
 
     // TODO: Enable buttons
-
+    enableButtons();
 
     // * Animate progress bars
     $('#hunger').animate({width: 0}, hunger * 1000);
@@ -96,6 +97,9 @@ let lose = () => {
     $('#boredom').stop();
 
     // TODO: Stop player input
+    $('#select').off('click', selectButton);
+    $('#continue').off('click', continueButton);
+    $('#cancel').off('click', cancelButton);
 
     $('.tamagotchi').attr('src', 'assets/tamagotchidead.gif');
 
@@ -150,10 +154,21 @@ let resetGame = () => {
 
 let enableButtons = () => {
 
+    $('#select').on('click', selectButton);
+    $('#continue').on('click', continueButton);
+    $('#cancel').on('click', cancelButton);
 
+}
 
+let selectButton = () => {
+    console.log('Selected!');
+}
 
+let continueButton = () => {
+    console.log('Continued!');
+}
 
-
+let cancelButton = () => {
+    console.log('cancelled!');
 }
 
