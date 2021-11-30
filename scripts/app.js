@@ -4,12 +4,20 @@ let tiredness = 30; /* 30 */
 let boredom = 35; /* 35 */
 let age = 0;
 
+const hungerAddAmount = 5;
+const tiredAddAmount = 5;
+const boredomAddAmount = 5;
+
 const hungerLevel = hunger;
 const tiredLevel = tiredness;
 const boredomLevel = boredom;
 
 // Getting css vars
 let styles = getComputedStyle(document.documentElement);
+
+// Getting progress bar length in pixels
+
+let barMaxPixels = parseFloat($('#hunger').css('width'));
 
 // Making img variables
 const eatImage = 'assets/eatmenu.png';
@@ -51,7 +59,7 @@ let playButton = (e) => {
 
 let play = () => {
 
-    // TODO: Enable buttons
+    //Enable buttons
     enableButtons();
 
     // * Animate progress bars
@@ -82,6 +90,7 @@ let play = () => {
         hunger--;
         tiredness--;
         boredom--;
+
     
         if (hunger <= 0 || tiredness <= 0 || boredom <= 0) {
 
@@ -158,6 +167,12 @@ let resetGame = () => {
     // Reset img
     $('.tamagotchi').attr('src', tamagotchiImage);
 
+    // Reset currentMenuIndex
+    currentMenuIndex = 0;
+
+    // Reset currentTamagotchi
+    currentTamagotchiImg = tamagotchiImage;
+
 }
 
 let enableButtons = () => {
@@ -194,6 +209,58 @@ let selectButton = () => {
 
 let continueButton = () => {
     
+    // Add the stats based on current menu, then change the menu back to the tamagotchi.
+
+    // * Stop animation. Change css property. resume animation.
+
+    if (currentMenuIndex === 1) {
+        hunger += hungerAddAmount;
+
+        if (hunger > hungerLevel) hunger = hungerLevel;
+
+        let percent = hunger / hungerLevel;
+        let amount = barMaxPixels * percent;
+
+        $('#hunger').stop()
+
+        $('#hunger').css('width', `${amount}px`);
+
+        $('#hunger').animate({width: 0}, hunger * 1000);
+
+    } else if (currentMenuIndex === 2) {
+        tiredness += tiredAddAmount;
+
+        if (tiredness > tiredLevel) tiredness = tiredLevel;
+
+        let percent = tiredness / tiredLevel;
+        let amount = barMaxPixels * percent;
+
+        $('#tiredness').stop()
+
+        $('#tiredness').css('width', `${amount}px`);
+
+        $('#tiredness').animate({width: 0}, tiredness * 1000);
+    } else if (currentMenuIndex === 3) {
+        boredom += boredomAddAmount;
+
+        if (boredom > boredomLevel) boredom = boredomLevel;
+
+        let percent = boredom / boredomLevel;
+        let amount = barMaxPixels * percent;
+
+        $('#boredom').stop()
+
+        $('#boredom').css('width', `${amount}px`);
+
+        $('#boredom').animate({width: 0}, boredom * 1000);
+    } 
+
+    if (currentMenuIndex !== 0) {
+        currentMenuIndex = 0;
+
+        $('.tamagotchi').attr('src', currentTamagotchiImg);
+    }
+
 }
 
 let cancelButton = () => {
