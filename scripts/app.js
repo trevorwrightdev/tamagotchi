@@ -1,7 +1,8 @@
-// On start
-let hunger = 5; /* 25 */
-let tiredness = 6; /* 30 */
-let boredom = 7; /* 35 */
+// On start set stats
+let hunger = 25; /* 25 */
+let tiredness = 30; /* 30 */
+let boredom = 35; /* 35 */
+let age = 0;
 
 const hungerLevel = hunger;
 const tiredLevel = tiredness;
@@ -9,6 +10,10 @@ const boredomLevel = boredom;
 
 // Getting css vars
 let styles = getComputedStyle(document.documentElement);
+
+// Making menu variables
+const eat = 'assets/eatmenu.png';
+const sleep = 'assets/sleepmenu.png';
 
 let startMainMenu = () => {
     $('.title-menu').animate({bottom: 0}, {duration: 800, queue: false, complete: () => {
@@ -38,9 +43,10 @@ let playButton = (e) => {
 }
 
 let play = () => {
-    // if we want to add random tamagotchi functionality, we just need to have no image initially
-    // and then assign a random one right here
-    
+
+    // TODO: Enable buttons
+
+
     // * Animate progress bars
     $('#hunger').animate({width: 0}, hunger * 1000);
     $('#tiredness').animate({width: 0}, tiredness * 1000);
@@ -48,17 +54,29 @@ let play = () => {
 
     // * Decrease stat values every second, as if it matched up with the animations
 
+    let timePassed = 0;
+
     let timer = setInterval(() => {
 
+        timePassed++;
+        // Age the tamagotchi based on time passed
+
+        if (timePassed % 15 === 0) {
+            age++;
+
+            // Set text to reflect the age
+            $('h2').text('Age: ' + age);
+
+        }
+
+        // Decrement stats
         hunger--;
         tiredness--;
         boredom--;
-
-        // TODO: Add an age system that increments every once in a while, and then evolve the tamagotchi at a certain point
     
         if (hunger <= 0 || tiredness <= 0 || boredom <= 0) {
 
-            // * End the subtraction
+            // * End the timer
             clearInterval(timer);
 
             lose();
@@ -113,8 +131,12 @@ let resetGame = () => {
     tiredness = tiredLevel;
     boredom = boredomLevel;
 
-    // Reset progress bars
+    // Reset age
+    age = 0;
+    // Reset age text
+    $('h2').text('Age: 0');
 
+    // Reset progress bars
     let barLength = styles.getPropertyValue('--progress-bar-width');
 
     $('#hunger').css('width', barLength);
@@ -123,6 +145,15 @@ let resetGame = () => {
 
     // Reset img
     $('.tamagotchi').attr('src', 'assets/tamagotchi1.gif');
+
+}
+
+let enableButtons = () => {
+
+
+
+
+
 
 }
 
