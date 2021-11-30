@@ -11,10 +11,16 @@ const boredomLevel = boredom;
 // Getting css vars
 let styles = getComputedStyle(document.documentElement);
 
-// Making menu variables
-const eatMenu = 'assets/eatmenu.png';
-const sleepMenu = 'assets/sleepmenu.png';
-const playMenu = 'assets/playmenu.png';
+// Making img variables
+const eatImage = 'assets/eatmenu.png';
+const sleepImage = 'assets/sleepmenu.png';
+const playImage = 'assets/playmenu.png';
+const tamagotchiImage = 'assets/tamagotchi1.gif';
+const tamagotchiDeadImg = 'assets/tamagotchidead.gif';
+
+let currentTamagotchiImg = tamagotchiImage;
+
+let currentMenuIndex = 0;
 
 let startMainMenu = () => {
     $('.title-menu').animate({bottom: 0}, {duration: 800, queue: false, complete: () => {
@@ -70,6 +76,8 @@ let play = () => {
 
         }
 
+        // TODO: EVOLVE TAMAGOTCHI
+
         // Decrement stats
         hunger--;
         tiredness--;
@@ -96,12 +104,12 @@ let lose = () => {
     $('#tiredness').stop();
     $('#boredom').stop();
 
-    // TODO: Stop player input
+    // Stop player input
     $('#select').off('click', selectButton);
     $('#continue').off('click', continueButton);
     $('#cancel').off('click', cancelButton);
 
-    $('.tamagotchi').attr('src', 'assets/tamagotchidead.gif');
+    $('.tamagotchi').attr('src', tamagotchiDeadImg);
 
     
     setTimeout(() => {
@@ -148,7 +156,7 @@ let resetGame = () => {
     $('#boredom').css('width', barLength);
 
     // Reset img
-    $('.tamagotchi').attr('src', 'assets/tamagotchi1.gif');
+    $('.tamagotchi').attr('src', tamagotchiImage);
 
 }
 
@@ -161,14 +169,34 @@ let enableButtons = () => {
 }
 
 let selectButton = () => {
-    console.log('Selected!');
+    
+    // In this system, each menu is a number.
+    // * TAMAGOTCHI: 0
+    // * EAT: 1
+    // * SLEEP: 2
+    // * PLAY: 3
+
+    // Increment menu 0-3
+    if (currentMenuIndex !== 3) currentMenuIndex++;
+    else currentMenuIndex = 0;
+
+    // Show correct menu based on number
+    if (currentMenuIndex === 0) {
+        $('.tamagotchi').attr('src', currentTamagotchiImg);
+    } else if (currentMenuIndex === 1) {
+        $('.tamagotchi').attr('src', eatImage);
+    } else if (currentMenuIndex === 2) {
+        $('.tamagotchi').attr('src', sleepImage);
+    } else if (currentMenuIndex === 3) {
+        $('.tamagotchi').attr('src', playImage);
+    }
 }
 
 let continueButton = () => {
-    console.log('Continued!');
+    
 }
 
 let cancelButton = () => {
-    console.log('cancelled!');
+    
 }
 
