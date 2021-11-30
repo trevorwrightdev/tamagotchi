@@ -1,13 +1,24 @@
 // On start
-let hunger = 25;
-let tiredness = 30;
-let boredom = 35;
+let hunger = 5; /* 25 */
+let tiredness = 6; /* 30 */
+let boredom = 7; /* 35 */
 
-$('.title-menu').animate({bottom: 0}, {duration: 800, queue: false, complete: () => {
+const hungerLevel = hunger;
+const tiredLevel = tiredness;
+const boredomLevel = boredom;
 
-    $('.play-button').on('click', playButton);
+// Getting css vars
+let styles = getComputedStyle(document.documentElement);
 
-}});
+let startMainMenu = () => {
+    $('.title-menu').animate({bottom: 0}, {duration: 800, queue: false, complete: () => {
+
+        $('.play-button').on('click', playButton);
+    
+    }});
+}
+
+startMainMenu();
 
 let playButton = (e) => {
     // Fade the menu, bring in the new menu. 
@@ -37,27 +48,18 @@ let play = () => {
 
     // * Decrease stat values every second, as if it matched up with the animations
 
-    let subtraction = setInterval(() => {
+    let timer = setInterval(() => {
 
         hunger--;
         tiredness--;
         boredom--;
 
-        // TODO: Check for zeroes to make the player lose        
+        // TODO: Add an age system that increments every once in a while, and then evolve the tamagotchi at a certain point
+    
         if (hunger <= 0 || tiredness <= 0 || boredom <= 0) {
 
             // * End the subtraction
-            clearInterval(subtraction);
-
-            // * Pause the animations
-            $('#hunger').stop();
-            $('#tiredness').stop();
-            $('#boredom').stop();
-
-            // TODO: Stop player input
-
-            // TODO: Change game image to dead tamagotchi
-            
+            clearInterval(timer);
 
             lose();
 
@@ -70,5 +72,57 @@ let play = () => {
 
 let lose = () => {
     
+    // * Pause the animations
+    $('#hunger').stop();
+    $('#tiredness').stop();
+    $('#boredom').stop();
+
+    // TODO: Stop player input
+
+    $('.tamagotchi').attr('src', 'assets/tamagotchidead.gif');
+
+    
+    setTimeout(() => {
+
+        $('.💪').fadeOut();
+
+        // We need to set up the flexbox so everything will work normal when we bring it back to play again.
+
+        setTimeout(() => {
+
+            resetGame();
+
+            // Bring in the old menu but change the text
+            $('.title-menu').css('bottom', '100vh');
+
+            // Make menu visible again
+            $('.title-menu').css('opacity', 1);
+            $('.title-menu').css('display', 'flex');
+
+            startMainMenu();
+
+        }, 500); 
+
+    }, 3000);
+}
+
+let resetGame = () => {
+
+    // Reset values
+    hunger = hungerLevel;
+    tiredness = tiredLevel;
+    boredom = boredomLevel;
+
+    // Reset progress bars
+
+    let barLength = styles.getPropertyValue('--progress-bar-width');
+
+    $('#hunger').css('width', barLength);
+    $('#tiredness').css('width', barLength);
+    $('#boredom').css('width', barLength);
+
+    // Reset img
+    $('.tamagotchi').attr('src', 'assets/tamagotchi1.gif');
+
 }
 
