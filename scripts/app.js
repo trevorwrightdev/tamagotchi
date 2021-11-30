@@ -37,13 +37,38 @@ let play = () => {
 
     // * Decrease stat values every second, as if it matched up with the animations
 
-    setInterval(() => {
+    let subtraction = setInterval(() => {
+
         hunger--;
         tiredness--;
         boredom--;
 
         // TODO: Check for zeroes to make the player lose        
+        if (hunger <= 0 || tiredness <= 0 || boredom <= 0) {
+
+            // * End the subtraction
+            clearInterval(subtraction);
+
+            // * Pause the animations
+            $('#hunger').stop();
+            $('#tiredness').stop();
+            $('#boredom').stop();
+
+            // TODO: Stop player input
+
+            // TODO: Change game image to dead tamagotchi
+            
+
+            lose();
+
+        }
 
     }, 1000);
 
 }
+
+
+let lose = () => {
+    
+}
+
