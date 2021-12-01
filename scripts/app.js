@@ -25,6 +25,8 @@ const sleepImage = 'assets/sleepmenu.png';
 const playImage = 'assets/playmenu.png';
 const tamagotchiImage = 'assets/tamagotchi1.gif';
 const tamagotchiDeadImg = 'assets/tamagotchidead.gif';
+const tamagotchiEvolved1Img = 'assets/tamagotchevolution1.gif';
+const tamagotchiEvo2Img = 'assets/tamagotchievo2.gif';
 
 let currentTamagotchiImg = tamagotchiImage;
 
@@ -39,6 +41,7 @@ let startMainMenu = () => {
 }
 
 startMainMenu();
+setupColorButtons();
 
 let playButton = (e) => {
     // Fade the menu, bring in the new menu. 
@@ -76,7 +79,7 @@ let play = () => {
         timePassed++;
         // Age the tamagotchi based on time passed
 
-        if (timePassed % 15 === 0) {
+        if (timePassed % 5 === 0) {
             age++;
 
             // Set text to reflect the age
@@ -84,7 +87,24 @@ let play = () => {
 
         }
 
-        // TODO: EVOLVE TAMAGOTCHI
+        // * EVOLVE TAMAGOTCHI
+
+        if (age === 5) {
+            currentTamagotchiImg = tamagotchiEvolved1Img;
+
+            if (currentMenuIndex === 0) {
+                // Only change the picture if they are looking at their tamagotchi
+                $('.tamagotchi').attr('src', currentTamagotchiImg);
+            }
+            
+        } else if (age === 10) {
+            currentTamagotchiImg = tamagotchiEvo2Img;
+
+            if (currentMenuIndex === 0) {
+                // Only change the picture if they are looking at their tamagotchi
+                $('.tamagotchi').attr('src', currentTamagotchiImg);
+            }
+        }
 
         // Decrement stats
         hunger--;
@@ -183,8 +203,10 @@ let enableButtons = () => {
 
 }
 
-let selectButton = () => {
+let selectButton = (e) => {
     
+    e.preventDefault();
+
     // In this system, each menu is a number.
     // * TAMAGOTCHI: 0
     // * EAT: 1
@@ -207,11 +229,13 @@ let selectButton = () => {
     }
 }
 
-let continueButton = () => {
+let continueButton = (e) => {
     
+    e.preventDefault();
+
     // Add the stats based on current menu, then change the menu back to the tamagotchi.
 
-    // * Stop animation. Change css property. resume animation.
+    // * Stop animation. Change css property. resume animation. Nice and simple.
 
     if (currentMenuIndex === 1) {
         hunger += hungerAddAmount;
@@ -263,7 +287,81 @@ let continueButton = () => {
 
 }
 
-let cancelButton = () => {
+let cancelButton = (e) => {
     
+    e.preventDefault();
+
+    // Do nothing if on tamagotchi menu
+    if (currentMenuIndex === 0) return;
+
+    // Set back to tamagotchi menu
+    currentMenuIndex = 0;
+    $('.tamagotchi').attr('src', currentTamagotchiImg);
+
+}
+
+function setupColorButtons() {
+
+    // * Colors
+
+    // * Green
+    let green1 = '#34BE82';
+    let green2 = '#1c7c53';
+    let green3 = '#F2F013';
+
+    // * Blue
+    let blue1 = '#14279B';
+    let blue2 = '#3D56B2';
+    let blue3 = '#5C7AEA';
+
+    // * Dark
+    let dark1 = '#000000';
+    let dark2 = '#AA14F0';
+    let dark3 = '#BC8CF2';
+
+    $('#green').on('click', (e) => {
+        e.preventDefault();
+
+        $('html').css('background-color', green1);
+        $('html').css('color', 'black');
+
+        $('.play-button').css('background-color', green2);
+        $('.bar-filler').css('background-color', green2);
+        $('.game-button').css('background-color', green2);
+
+        $('.bar-background').css('background-color', green3);
+        $('.📺').css('background-color', green3);
+    });
+
+    $('#blue').on('click', (e) => {
+        e.preventDefault();
+
+        $('html').css('background-color', blue1);
+        $('html').css('color', 'black');
+
+        $('.play-button').css('background-color', blue2);
+        $('.bar-filler').css('background-color', blue2);
+        $('.game-button').css('background-color', blue2);
+
+        $('.bar-background').css('background-color', blue3);
+        $('.📺').css('background-color', blue3);
+    });
+
+    $('#dark').on('click', (e) => {
+        e.preventDefault();
+
+        $('html').css('background-color', dark1);
+        $('html').css('color', 'white');
+
+        $('.play-button').css('background-color', dark2);
+        $('.bar-filler').css('background-color', dark2);
+        $('.game-button').css('background-color', dark2);
+
+        $('.bar-background').css('background-color', dark3);
+        $('.📺').css('background-color', dark3);
+    });
+
+
+
 }
 
