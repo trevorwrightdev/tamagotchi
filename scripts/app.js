@@ -15,10 +15,6 @@ const boredomLevel = boredom;
 // Getting css vars
 let styles = getComputedStyle(document.documentElement);
 
-// Getting progress bar length in pixels
-
-let barMaxPixels = parseFloat($('#hunger').css('width'));
-
 // Making img variables
 const eatImage = 'assets/eatmenu.png';
 const sleepImage = 'assets/sleepmenu.png';
@@ -243,7 +239,7 @@ let continueButton = (e) => {
         if (hunger > hungerLevel) hunger = hungerLevel;
 
         let percent = hunger / hungerLevel;
-        let amount = barMaxPixels * percent;
+        let amount = (parseFloat($('.bar-background').css('width'))) * percent;
 
         $('#hunger').stop()
 
@@ -257,7 +253,7 @@ let continueButton = (e) => {
         if (tiredness > tiredLevel) tiredness = tiredLevel;
 
         let percent = tiredness / tiredLevel;
-        let amount = barMaxPixels * percent;
+        let amount = (parseFloat($('.bar-background').css('width'))) * percent;
 
         $('#tiredness').stop()
 
@@ -270,7 +266,7 @@ let continueButton = (e) => {
         if (boredom > boredomLevel) boredom = boredomLevel;
 
         let percent = boredom / boredomLevel;
-        let amount = barMaxPixels * percent;
+        let amount = (parseFloat($('.bar-background').css('width'))) * percent;
 
         $('#boredom').stop()
 
