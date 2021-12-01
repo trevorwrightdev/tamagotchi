@@ -38,6 +38,10 @@ nav {
     flex-direction: row;
 }
 
+button {
+    color: black;
+}
+
 .title-menu {
     display: flex;
     flex-direction: column;
