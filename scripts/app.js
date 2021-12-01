@@ -325,6 +325,8 @@ function setupColorButtons() {
         $('html').css('background-color', green1);
         $('html').css('color', 'black');
 
+        $('button > img').css('border-color', 'black');
+
         $('.play-button').css('background-color', green2);
         $('.bar-filler').css('background-color', green2);
         $('.game-button').css('background-color', green2);
@@ -339,6 +341,8 @@ function setupColorButtons() {
         $('html').css('background-color', blue1);
         $('html').css('color', 'black');
 
+        $('button > img').css('border-color', 'black');
+
         $('.play-button').css('background-color', blue2);
         $('.bar-filler').css('background-color', blue2);
         $('.game-button').css('background-color', blue2);
@@ -352,6 +356,8 @@ function setupColorButtons() {
 
         $('html').css('background-color', dark1);
         $('html').css('color', 'white');
+
+        $('button > img').css('border-color', 'white');
 
         $('.play-button').css('background-color', dark2);
         $('.bar-filler').css('background-color', dark2);
