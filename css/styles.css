@@ -168,3 +168,9 @@ button > img {
         font-size: .9rem;
     }
 }
+
+@media only screen and (max-width: 900px) {
+    :root {
+        --progress-bar-width: 25vw;
+    }
+}
