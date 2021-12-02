@@ -65,6 +65,24 @@ button {
     margin: 10px;
 }
 
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.name {
+    background: transparent;
+    border-style: none;
+    font-family: pixel, sans-serif;
+    font-size: 1rem;
+    margin: 0 0 0 10px;
+    outline: none !important;
+    position: relative;
+    left: 1.2vw;
+}
+
 h2 {
     margin: 5px;
 }

@@ -8,7 +8,7 @@ const hungerAddAmount = 5;
 const tiredAddAmount = 5;
 const boredomAddAmount = 5;
 
-const hungerLevel = hunger;
+const hungerLevel = hunger;2
 const tiredLevel = tiredness;
 const boredomLevel = boredom;
 
@@ -27,6 +27,8 @@ const tamagotchiEvo2Img = 'assets/tamagotchievo2.gif';
 let currentTamagotchiImg = tamagotchiImage;
 
 let currentMenuIndex = 0;
+
+$('.name').val('timmy');
 
 let startMainMenu = () => {
     $('.title-menu').animate({bottom: 0}, {duration: 800, queue: false, complete: () => {
