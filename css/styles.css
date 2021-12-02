@@ -74,17 +74,17 @@ button {
 
 .name {
     background: transparent;
+    width: 10vw;
     border-style: none;
     font-family: pixel, sans-serif;
     font-size: 1rem;
-    margin: 0 0 0 10px;
     outline: none !important;
     position: relative;
-    left: 1.2vw;
+    margin: 0 0 0 20px;
 }
 
 h2 {
-    margin: 5px;
+    margin: 5px 0;
 }
 
 .game {
